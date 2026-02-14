@@ -5,7 +5,11 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import Roadmap from './pages/Roadmap';
+import ResumeAnalyzer from './pages/ResumeAnalyzer';
+import CareerInsights from './pages/CareerInsights';
 
+// Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
@@ -29,6 +33,30 @@ const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/roadmap"
+        element={
+          <ProtectedRoute>
+            <Roadmap />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/resume-analyzer"
+        element={
+          <ProtectedRoute>
+            <ResumeAnalyzer />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/career-insights"
+        element={
+          <ProtectedRoute>
+            <CareerInsights />
           </ProtectedRoute>
         }
       />

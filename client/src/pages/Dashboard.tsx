@@ -43,6 +43,24 @@ const Dashboard: React.FC = () => {
               <h1 className="text-2xl font-bold text-indigo-600">PathFinder AI</h1>
             </div>
             <div className="flex items-center space-x-4">
+              <button
+                onClick={() => navigate('/roadmap')}
+                className="text-gray-600 hover:text-indigo-600 font-medium"
+              >
+                🗺️ Roadmap
+              </button>
+              <button
+                onClick={() => navigate('/resume-analyzer')}
+                className="text-gray-600 hover:text-indigo-600 font-medium"
+              >
+                📄 Resume
+              </button>
+              <button
+                onClick={() => navigate('/profile')}
+                className="text-gray-600 hover:text-indigo-600 font-medium"
+              >
+                👤 Profile
+              </button>
               <span className="text-gray-700">Welcome, {user?.name}</span>
               <button
                 onClick={handleLogout}
@@ -55,8 +73,38 @@ const Dashboard: React.FC = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
+      {/* AI Features Cards - NEW SECTION */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">🤖 AI-Powered Features</h2>
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <button
+            onClick={() => navigate('/roadmap')}
+            className="bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <div className="text-4xl mb-3">🗺️</div>
+            <h3 className="text-xl font-bold mb-2">Learning Roadmap</h3>
+            <p className="text-purple-100">Generate personalized learning paths based on your goals</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/resume-analyzer')}
+            className="bg-gradient-to-br from-blue-500 to-cyan-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <div className="text-4xl mb-3">📄</div>
+            <h3 className="text-xl font-bold mb-2">Resume Analyzer</h3>
+            <p className="text-blue-100">Get AI-powered feedback on your resume</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/career-insights')}
+            className="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <div className="text-4xl mb-3">💼</div>
+            <h3 className="text-xl font-bold mb-2">Career Insights</h3>
+            <p className="text-green-100">Get career recommendations based on your skills</p>
+          </button>
+        </div>
+
         {/* GitHub Analysis Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Analyze GitHub Profile</h2>

@@ -32,4 +32,21 @@ export const githubAPI = {
     api.get(`/github/repos/${username}`),
 };
 
+export const aiAPI = {
+  generateRoadmap: (data: {
+    currentSkills: string[];
+    targetRole: string;
+    experienceLevel: string;
+  }) => api.post('/ai/roadmap', data),
+  
+  analyzeResume: (data: { resumeText: string; targetRole: string }) =>
+    api.post('/ai/resume-analysis', data),
+  
+  getCareerRecommendations: (data: { skills: any; githubStats: any }) =>
+    api.post('/ai/career-recommendations', data),
+  
+  getInterviewQuestions: (data: { role: string; skills: string[] }) =>
+    api.post('/ai/interview-questions', data),
+};
+
 export default api;

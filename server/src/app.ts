@@ -1,9 +1,10 @@
 import express, { Request, Response } from "express";
-import cors from "cors";
 import dotenv from "dotenv";
+import cors from "cors";
 import authRoutes from "./routes/authRoutes";
 import githubRoutes from "./routes/githubRoutes";
 import { connectDB } from "./config/database";
+import aiRoutes from './routes/aiRoutes';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.get("/health", (req: Request, res: Response) => {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/github", githubRoutes);
+app.use('/api/ai', aiRoutes);
 
 const PORT = process.env.PORT || 5000;
 
