@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Roadmap from './pages/Roadmap';
 import ResumeAnalyzer from './pages/ResumeAnalyzer';
 import CareerInsights from './pages/CareerInsights';
+import JobMatcher from './pages/JobMatcher';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -28,6 +29,14 @@ const AppRoutes: React.FC = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+  path="/job-matcher"
+  element={
+    <ProtectedRoute>
+      <JobMatcher />
+    </ProtectedRoute>
+  }
+/>
       <Route
         path="/profile"
         element={

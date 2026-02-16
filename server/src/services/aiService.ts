@@ -60,27 +60,32 @@ Return ONLY a valid JSON object with this exact structure:
   ]
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an expert career advisor. Always respond with valid JSON only, no markdown.',
-        },
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-      temperature: 0.7,
-      response_format: { type: 'json_object' },
-    });
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an expert career advisor. Always respond with valid JSON only, no markdown.',
+          },
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+        temperature: 0.7,
+        response_format: { type: 'json_object' },
+      });
 
-    const content = response.choices[0].message.content;
-    if (!content) throw new Error('No response from OpenAI');
+      const content = response.choices[0].message.content;
+      if (!content) throw new Error('No response from OpenAI');
 
-    const parsed = JSON.parse(content);
-    return parsed.roadmap || parsed.phases || [];
+      const parsed = JSON.parse(content);
+      return parsed.roadmap || parsed.phases || [];
+    } catch (error) {
+      console.error('OpenAI roadmap error:', error);
+      throw new Error('Failed to generate roadmap');
+    }
   }
 
   // Analyze resume and provide feedback
@@ -99,26 +104,31 @@ Return ONLY a valid JSON object with this exact structure:
   "atsScore": 90
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an expert resume reviewer. Always respond with valid JSON only, no markdown.',
-        },
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-      temperature: 0.5,
-      response_format: { type: 'json_object' },
-    });
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an expert resume reviewer. Always respond with valid JSON only, no markdown.',
+          },
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+        temperature: 0.5,
+        response_format: { type: 'json_object' },
+      });
 
-    const content = response.choices[0].message.content;
-    if (!content) throw new Error('No response from OpenAI');
+      const content = response.choices[0].message.content;
+      if (!content) throw new Error('No response from OpenAI');
 
-    return JSON.parse(content);
+      return JSON.parse(content);
+    } catch (error) {
+      console.error('OpenAI resume analysis error:', error);
+      throw new Error('Failed to analyze resume');
+    }
   }
 
   // Generate career recommendations
@@ -128,6 +138,8 @@ Return ONLY a valid JSON object with this exact structure:
 Top Languages: ${JSON.stringify(skills.topLanguages)}
 Top Skills: ${JSON.stringify(skills.topSkills)}
 Activity Score: ${skills.activityScore}/100
+Total Repos: ${skills.totalRepos}
+Total Commits: ${skills.totalCommits}
 
 Return ONLY a valid JSON object with this exact structure:
 {
@@ -139,26 +151,31 @@ Return ONLY a valid JSON object with this exact structure:
   "nextSteps": ["Build a microservices project", "Get AWS certification", "Contribute to open source", "Learn Kubernetes"]
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a technical career advisor. Always respond with valid JSON only, no markdown.',
-        },
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-      temperature: 0.7,
-      response_format: { type: 'json_object' },
-    });
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a technical career advisor. Always respond with valid JSON only, no markdown.',
+          },
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+        temperature: 0.7,
+        response_format: { type: 'json_object' },
+      });
 
-    const content = response.choices[0].message.content;
-    if (!content) throw new Error('No response from OpenAI');
+      const content = response.choices[0].message.content;
+      if (!content) throw new Error('No response from OpenAI');
 
-    return JSON.parse(content);
+      return JSON.parse(content);
+    } catch (error) {
+      console.error('OpenAI career recommendations error:', error);
+      throw new Error('Failed to generate career recommendations');
+    }
   }
 
   // Generate interview questions
@@ -188,26 +205,31 @@ Return ONLY a valid JSON object with this exact structure:
   ]
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a technical interviewer. Always respond with valid JSON only, no markdown.',
-        },
-        {
-          role: 'user',
-          content: prompt,
-        },
-      ],
-      temperature: 0.8,
-      response_format: { type: 'json_object' },
-    });
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a technical interviewer. Always respond with valid JSON only, no markdown.',
+          },
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+        temperature: 0.8,
+        response_format: { type: 'json_object' },
+      });
 
-    const content = response.choices[0].message.content;
-    if (!content) throw new Error('No response from OpenAI');
+      const content = response.choices[0].message.content;
+      if (!content) throw new Error('No response from OpenAI');
 
-    return JSON.parse(content);
+      return JSON.parse(content);
+    } catch (error) {
+      console.error('OpenAI interview questions error:', error);
+      throw new Error('Failed to generate interview questions');
+    }
   }
 }
 

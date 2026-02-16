@@ -49,4 +49,24 @@ export const aiAPI = {
     api.post('/ai/interview-questions', data),
 };
 
+export const jobAPI = {
+  matchJobs: (data: {
+    userSkills: any;
+    targetRole: string;
+    location?: string;
+    remote?: boolean;
+  }) => api.post('/jobs/match', data),
+  
+  searchJobs: (params: {
+    query?: string;
+    location?: string;
+    remote?: boolean;
+    jobType?: string;
+    limit?: number;
+  }) => api.get('/jobs/search', { params }),
+  
+  getSavedJobs: (limit?: number) =>
+    api.get('/jobs/saved', { params: { limit } }),
+};
+
 export default api;

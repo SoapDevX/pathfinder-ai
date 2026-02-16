@@ -83,3 +83,29 @@ export interface InterviewQuestions {
     difficulty: string;
   }>;
 }
+
+// Job Types
+export interface Job {
+  id?: number;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  requirements: string;
+  salary?: string;
+  jobType: string;
+  remote: boolean;
+  source: string;
+  sourceUrl: string;
+  postedDate: Date;
+  skills: string[];
+}
+
+export interface JobMatch {
+  job: Job;
+  matchScore: number;
+  matchReason: string;
+  missingSkills: string[];
+  matchedSkills: string[];
+  recommendation: string;
+}
